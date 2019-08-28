@@ -72,6 +72,10 @@ class SudokuGame
     pos.split(",").map(&:to_i)
   end
 
+  def parse_val(val)
+    Integer(val)
+  end
+
   def valid_pos?(pos)
     if pos.is_a?(Array) &&
       pos.length == 2 &&
