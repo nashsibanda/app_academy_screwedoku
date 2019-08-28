@@ -30,7 +30,7 @@ class SudokuGame
 
       begin
         pos = parse_pos(gets)
-      rescue => error
+      rescue
         # TODO: Google how to print the error that happened inside of a rescue statement.
         puts "Invalid position entered (did you use a comma?)"
         puts ""
@@ -68,10 +68,14 @@ class SudokuGame
     board.solved?
   end
 
+  def parse_pos(pos) 
+    pos.split(",").map(&:to_i)
+  end
+
   def valid_pos?(pos)
-    if pos.is_a?(:Array) &&
-      pos.length = 2 &&
-      pos.all? { |x| x.in?(0, board.size - 1) }
+    if pos.is_a?(Array) &&
+      pos.length == 2 &&
+      pos.all? { |x| x.between?(0, board.size - 1) }
       return true
     else
       get_pos
